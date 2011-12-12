@@ -1,8 +1,20 @@
 using StringTools;
 using Lambda;
+import HTMLMacro;
 
-class HTML {
+/* creates
+
+   static public inline function {n}(c:HTML, a:Dynamic = null):HTML{
+   return HTML.t(c, '{n}', a);
+   }
+
+   like methods
+*/
+@:build(HTMLMacro.build(["body","head","html","tr","table","h1","h2","h3","td","span","strong","div"])) class HTML {
   // escape html
+  static public inline function verb(s:String):HTML {
+    return untyped(s);
+  }
   static public inline function qS(s:String):HTML {
     return untyped(StringTools.htmlEscape(s));
   }
@@ -17,14 +29,18 @@ class HTML {
     return untyped(a_ + b_);
   }
 
-  static public function join( it : Iterator<HTML>):HTML {
+  static public inline function join( it : Iterator<HTML>):HTML {
     return untyped(untyped(it).join(''));
   }
 
   // use macros to make this code faster ad inline?
-  static public function t(content:HTML, tag:String, args:Dynamic = null):HTML{
+  static public inline function t(content:HTML, tag:String, attrs:Dynamic = null):HTML{
     // TODO attrs
-    return untyped("<"+tag+">"+untyped(content)+"</"+tag+">");
+    var fields = "";
+    for (n in Reflect.fields(attrs))
+      fields += " "+n+"=\""+Reflect.field(attrs, n)+"\"";
+
+    return untyped("<"+tag +fields+">"+untyped(content)+"</"+tag+">");
   }
 
   static public inline function s(h:HTML):String{
@@ -32,20 +48,8 @@ class HTML {
   }
 
   // should be created by macro!
-  static public inline function td(c:HTML, attrs:Dynamic = null):HTML{
-    return HTML.t(c, 'td', attrs);
-  }
-
   static public function tds(c:List<HTML>, attrs:Dynamic = null):HTML{
     return untyped(c.map(function(x){ return untyped(HTML.td(x, attrs)); }).join('')); 
-  }
-
-  static public inline function tr(c:HTML, a:Dynamic = null):HTML{
-    return HTML.t(c, 'tr', a);
-  }
-
-  static public inline function table(c:HTML, a:Dynamic = null):HTML{
-    return HTML.t(c, 'table', a);
   }
 
 }
