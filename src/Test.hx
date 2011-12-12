@@ -14,15 +14,15 @@ class Test {
     trace(helloWorld.h2({'class':"my_class"}));
 
     // quoting works the way htmlEscape does (StringTools)
-    trace( "<".qS().t('h2').s() ); // failure
+    trace( "<".qS().h2().s() ); // failure
 
     // tds special function:
     trace( [1,2,3,4].map(function(x){ return x.qI(); }).tds().tr().table() );
 
     // append HTML
-    var x = "text".qS()
+    var x:HTML = "text".qS()
             .append("fooo".qS());
-    trace(x.append("y".qS()));
+    trace(x);
     
     // Yes - the resulting code may not be very optimizied - eventually more macro magic should be used
   }    
