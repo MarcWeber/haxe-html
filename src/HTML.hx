@@ -1,7 +1,7 @@
 using StringTools;
 using Lambda;
 
-extern class HTML {
+class HTML {
   // escape html
   static public inline function qS(s:String):HTML {
     return untyped(StringTools.htmlEscape(s));
@@ -11,8 +11,10 @@ extern class HTML {
   }
 
   static public function append(a:HTML, b:HTML):HTML{
+    var a_:String = untyped a;
+    var b_:String = untyped b;
     // stirng concatenation
-    return untyped(untyped(a) + untyped(b));
+    return untyped(a_ + b_);
   }
 
   static public function join( it : Iterator<HTML>):HTML {
@@ -20,7 +22,7 @@ extern class HTML {
   }
 
   // use macros to make this code faster ad inline?
-  static public function t(content:HTML, tag:String, args:Dynamic = {}):HTML{
+  static public function t(content:HTML, tag:String, args:Dynamic = null):HTML{
     // TODO attrs
     return untyped("<"+tag+">"+untyped(content)+"</"+tag+">");
   }
@@ -34,7 +36,7 @@ extern class HTML {
     return HTML.t(c, 'td', attrs);
   }
 
-  static public function tds(c:List<HTML>, attrs:Dynamic = {}):HTML{
+  static public function tds(c:List<HTML>, attrs:Dynamic = null):HTML{
     return untyped(c.map(function(x){ return untyped(HTML.td(x, attrs)); }).join('')); 
   }
 

@@ -1,3 +1,4 @@
+import HTML;
 using HTML;
 using Lambda;
 
