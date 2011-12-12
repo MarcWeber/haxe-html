@@ -1,0 +1,4 @@
+-debug
+-cp src
+-neko Test.n
+-main Test
