@@ -1,6 +1,7 @@
+package html;
 using StringTools;
 using Lambda;
-import HTMLMacro;
+import html.HTMLMacro;
 
 /* creates
 
@@ -10,7 +11,7 @@ import HTMLMacro;
 
    like methods
 */
-@:build(HTMLMacro.build(["body","head","html","tr","table","h1","h2","h3","td","span","strong","div"])) class HTML {
+@:build(html.HTMLMacro.build(["body","head","html","tr","table","h1","h2","h3","td","span","strong","div"])) class HTML {
   // escape html
   static public inline function verb(s:String):HTML {
     return untyped(s);

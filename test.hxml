@@ -1,4 +1,3 @@
 -debug
--cp src
 -neko Test.n
--main Test
+-main html.Test

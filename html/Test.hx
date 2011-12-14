@@ -1,6 +1,7 @@
-import HTML;
+package html;
+import html.HTML;
 
-using HTML;
+using html.HTML;
 using Lambda;
 
 
