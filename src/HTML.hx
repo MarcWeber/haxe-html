@@ -47,9 +47,24 @@ import HTMLMacro;
     return untyped(h);
   }
 
-  // should be created by macro!
-  static public function tds(c:List<HTML>, attrs:Dynamic = null):HTML{
-    return untyped(c.map(function(x){ return untyped(HTML.td(x, attrs)); }).join('')); 
+  static public inline function tds(c:List<HTML>, attrs:Dynamic = null):HTML{
+    var s = "";
+    for (x in c) s += untyped(HTML.td(x, attrs));
+    return untyped(s);
   }
+  /* dummy declarations for tags and such
+  function body();
+  function head();
+  function html();
+  function tr();
+  function table()
+  function h1();
+  function h2();
+  function h3();
+  function td();
+  function span();
+  function strong();
+  function div();
+  */
 
 }
