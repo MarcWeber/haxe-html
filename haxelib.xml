@@ -1,6 +1,6 @@
 <project name="haxe-html" url="http://github.com/MarcWeber/haxe-html" license="GPL">
-    <user name="mylogin"/>
-    <tag v="cross"/>
+    <user name="MarcWeber"/>
+    <tag  v="cross"/>
     <description>Minimal type safe HTML combinator library</description>
     <version name="0.0">Initial release, everything is working correctly</version>
 </project>
