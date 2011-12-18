@@ -1,14 +1,16 @@
 #!/bin/sh
-mkdir -p release/haxe-html
-git archive --format=zip HEAD > haxe-html.zip
+p=$(sed -n 's/<project name="\([^"]*\)".*/\1/p ' haxelib.xml)
+
+mkdir -p release/$p
+git archive --format=zip HEAD > $p.zip
 rm -fr release
-mkdir -p release/haxe-html
+mkdir -p release/$p
 (
   set -x
-  cd release/haxe-html
-  unzip ../../haxe-html.zip
-  rm ../../haxe-html.zip
+  cd release/$p
+  unzip ../../$p.zip
+  rm ../../$p.zip
   cd ..
-  rm haxe-html/.gitignore
-  zip -r ../haxe-html.zip .
+  rm $p/.gitignore
+  zip -r ../$p.zip .
 )
